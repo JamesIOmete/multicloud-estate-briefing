@@ -1,0 +1,45 @@
+{
+  "meta": {
+    "generated_at": "2026-01-21T12:00:00Z",
+    "project_id": "sample-gcp-project",
+    "region": "us-central1"
+  },
+  "iam": {
+    "service_accounts": [
+      {
+        "displayName": "Default compute service account",
+        "email": "123456-compute@developer.gserviceaccount.com",
+        "projectId": "sample-gcp-project"
+      }
+    ]
+  },
+  "network": {
+    "vpcs": [
+      {
+        "name": "default",
+        "autoCreateSubnetworks": true
+      }
+    ],
+    "subnets": [
+      {
+        "name": "default",
+        "ipCidrRange": "10.128.0.0/20",
+        "region": "us-central1",
+        "privateIpGoogleAccess": false
+      }
+    ],
+    "firewall_rules": []
+  },
+  "compute": {
+    "instances": [
+      {
+        "name": "sample-instance",
+        "machineType": "zones/us-central1-a/machineTypes/e2-micro",
+        "status": "RUNNING"
+      }
+    ]
+  },
+  "storage": {
+    "buckets": []
+  }
+}

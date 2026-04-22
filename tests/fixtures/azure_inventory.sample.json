@@ -1,0 +1,37 @@
+{
+  "meta": {
+    "generated_at": "2026-02-07T00:00:00Z",
+    "subscription_id": "00000000-0000-0000-0000-000000000000",
+    "subscription_name": "mcsa-uc02-dev",
+    "tenant_id": "11111111-1111-1111-1111-111111111111",
+    "user": "github-oidc@example.com"
+  },
+  "identity": {
+    "account": {
+      "id": "00000000-0000-0000-0000-000000000000",
+      "name": "mcsa-uc02-dev",
+      "tenantId": "11111111-1111-1111-1111-111111111111"
+    }
+  },
+  "locations": [
+    { "name": "westus2", "displayName": "West US 2" }
+  ],
+  "resource_groups": [
+    { "name": "mcsa-uc02-rg", "location": "westus2" }
+  ],
+  "resources": [],
+  "network": {
+    "vnets": [],
+    "public_ips": [],
+    "nsgs": []
+  },
+  "compute": {
+    "virtual_machines": []
+  },
+  "storage": {
+    "accounts": []
+  },
+  "security": {
+    "key_vaults": []
+  }
+}

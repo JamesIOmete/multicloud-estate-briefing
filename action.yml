@@ -1,0 +1,90 @@
+name: 'Multi-Cloud Estate Briefing'
+description: 'AI-powered estate briefing from UC02 inventory artifacts — summarises, flags anomalies, and recommends actions'
+author: 'JamesIOmete'
+
+branding:
+  icon: 'globe'
+  color: 'green'
+
+inputs:
+  inventory-path:
+    description: 'Path to a single inventory.json (any cloud). Use this for single-cloud mode.'
+    required: false
+    default: ''
+  inventory-path-aws:
+    description: 'Path to AWS inventory.json for multi-cloud mode.'
+    required: false
+    default: ''
+  inventory-path-azure:
+    description: 'Path to Azure inventory.json for multi-cloud mode.'
+    required: false
+    default: ''
+  inventory-path-gcp:
+    description: 'Path to GCP inventory.json for multi-cloud mode.'
+    required: false
+    default: ''
+  previous-inventory-path:
+    description: 'Previous inventory.json snapshot for drift detection (optional).'
+    required: false
+    default: ''
+  openai-api-key:
+    description: 'OpenAI API key (mutually exclusive with azure-openai-* inputs).'
+    required: false
+    default: ''
+  azure-openai-endpoint:
+    description: 'Azure OpenAI endpoint URL.'
+    required: false
+    default: ''
+  azure-openai-key:
+    description: 'Azure OpenAI API key.'
+    required: false
+    default: ''
+  azure-openai-deployment:
+    description: 'Azure OpenAI deployment name.'
+    required: false
+    default: 'gpt-4o'
+  model:
+    description: 'OpenAI model name.'
+    required: false
+    default: 'gpt-4o'
+  github-token:
+    description: 'GitHub token for posting workflow summary.'
+    required: true
+    default: '${{ github.token }}'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.12'
+
+    - name: Install dependencies
+      shell: bash
+      run: pip install -r "${{ github.action_path }}/requirements.txt"
+
+    - name: Generate estate briefing
+      shell: bash
+      run: |
+        ARGS=""
+        if [ -n "$INV" ];        then ARGS="$ARGS --inventory $GITHUB_WORKSPACE/$INV"; fi
+        if [ -n "$INV_AWS" ];    then ARGS="$ARGS --inventory-aws $GITHUB_WORKSPACE/$INV_AWS"; fi
+        if [ -n "$INV_AZURE" ];  then ARGS="$ARGS --inventory-azure $GITHUB_WORKSPACE/$INV_AZURE"; fi
+        if [ -n "$INV_GCP" ];    then ARGS="$ARGS --inventory-gcp $GITHUB_WORKSPACE/$INV_GCP"; fi
+        if [ -n "$PREV" ];       then ARGS="$ARGS --previous $GITHUB_WORKSPACE/$PREV"; fi
+        python -m briefing.brief $ARGS --post-summary
+      working-directory: ${{ github.action_path }}
+      env:
+        INV: ${{ inputs.inventory-path }}
+        INV_AWS: ${{ inputs.inventory-path-aws }}
+        INV_AZURE: ${{ inputs.inventory-path-azure }}
+        INV_GCP: ${{ inputs.inventory-path-gcp }}
+        PREV: ${{ inputs.previous-inventory-path }}
+        OPENAI_API_KEY: ${{ inputs.openai-api-key }}
+        AZURE_OPENAI_ENDPOINT: ${{ inputs.azure-openai-endpoint }}
+        AZURE_OPENAI_KEY: ${{ inputs.azure-openai-key }}
+        AZURE_OPENAI_DEPLOYMENT: ${{ inputs.azure-openai-deployment }}
+        MODEL: ${{ inputs.model }}
+        GITHUB_TOKEN: ${{ inputs.github-token }}
+        GITHUB_STEP_SUMMARY: ${{ env.GITHUB_STEP_SUMMARY }}

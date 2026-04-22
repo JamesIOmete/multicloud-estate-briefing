@@ -1,0 +1,70 @@
+{
+  "meta": {
+    "generated_at": "2026-01-09T06:50:34Z",
+    "region": "us-west-2"
+  },
+  "identity": {
+    "account_id": "<ACCOUNT_ID>",
+    "account_alias": "<ACCOUNT_ALIAS>",
+    "caller": {
+      "UserId": "AROAVVGYYJIU4K32KSGTW:GitHubActions",
+      "Account": "<ACCOUNT_ID>",
+      "Arn": "<ARN:56a0b2cae3>"
+    }
+  },
+  "network": {
+    "vpcs": [
+      {
+        "VpcId": "<AWS_ID:bc1f040f04>",
+        "State": "available",
+        "IsDefault": true,
+        "CidrBlock": "<REDACTED_CIDR>"
+      }
+    ],
+    "subnets": [
+      { "SubnetId": "subnet-1", "CidrBlock": "10.0.1.0/24" },
+      { "SubnetId": "subnet-2", "CidrBlock": "10.0.2.0/24" },
+      { "SubnetId": "subnet-3", "CidrBlock": "10.0.3.0/24" },
+      { "SubnetId": "subnet-4", "CidrBlock": "10.0.4.0/24" }
+    ],
+    "security_groups": [
+      { "GroupId": "sg-001", "GroupName": "default" },
+      { "GroupId": "sg-002", "GroupName": "launch-wizard-1" },
+      { "GroupId": "sg-003", "GroupName": "launch-wizard-2" },
+      { "GroupId": "sg-004", "GroupName": "launch-wizard-3" },
+      { "GroupId": "sg-005", "GroupName": "rds-sg" },
+      { "GroupId": "sg-006", "GroupName": "alb-sg" },
+      { "GroupId": "sg-007", "GroupName": "ecs-tasks-sg" },
+      { "GroupId": "sg-008", "GroupName": "bastion-sg" },
+      { "GroupId": "sg-009", "GroupName": "lambda-sg" },
+      { "GroupId": "sg-010", "GroupName": "vpc-endpoint-sg" },
+      { "GroupId": "sg-011", "GroupName": "mgmt-sg" },
+      { "GroupId": "sg-012", "GroupName": "staging-sg" },
+      { "GroupId": "sg-013", "GroupName": "dev-sg" },
+      { "GroupId": "sg-014", "GroupName": "monitoring-sg" },
+      { "GroupId": "sg-015", "GroupName": "ci-sg" },
+      { "GroupId": "sg-016", "GroupName": "test-sg-1" },
+      { "GroupId": "sg-017", "GroupName": "test-sg-2" },
+      { "GroupId": "sg-018", "GroupName": "test-sg-3" },
+      { "GroupId": "sg-019", "GroupName": "test-sg-4" },
+      { "GroupId": "sg-020", "GroupName": "test-sg-5" },
+      { "GroupId": "sg-021", "GroupName": "test-sg-6" },
+      { "GroupId": "sg-022", "GroupName": "test-sg-7" }
+    ]
+  },
+  "compute": {
+    "instances": [
+      { "InstanceId": "i-001", "InstanceType": "t3.micro", "State": { "Name": "running" } },
+      { "InstanceId": "i-002", "InstanceType": "t3.micro", "State": { "Name": "running" } },
+      { "InstanceId": "i-003", "InstanceType": "t3.small", "State": { "Name": "stopped" } },
+      { "InstanceId": "i-004", "InstanceType": "t3.small", "State": { "Name": "running" } },
+      { "InstanceId": "i-005", "InstanceType": "t3.medium", "State": { "Name": "running" } }
+    ],
+    "load_balancers_v2": [
+      { "LoadBalancerArn": "<ARN:alb1>", "Type": "application", "Scheme": "internet-facing" }
+    ]
+  },
+  "iam": {
+    "discovery_role_name": "github-terraform-oidc"
+  }
+}
