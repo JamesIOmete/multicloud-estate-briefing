@@ -53,7 +53,7 @@ jobs:
         uses: JamesIOmete/multicloud-estate-briefing@v1
         with:
           inventory-path: out/artifacts/inventory.json
-          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
@@ -66,7 +66,7 @@ jobs:
           inventory-path-aws: out/aws/artifacts/inventory.json
           inventory-path-azure: out/azure/artifacts/inventory.json
           inventory-path-gcp: out/gcp/artifacts/inventory.json
-          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
@@ -78,7 +78,7 @@ jobs:
         with:
           inventory-path: out/artifacts/inventory.json
           previous-inventory-path: previous/artifacts/inventory.json
-          openai-api-key: ${{ secrets.OPENAI_API_KEY }}
+          anthropic-api-key: ${{ secrets.ANTHROPIC_API_KEY }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
@@ -139,6 +139,8 @@ python -m briefing.brief \
 | `inventory-path-azure` | No* | — | Path to Azure `inventory.json` |
 | `inventory-path-gcp` | No* | — | Path to GCP `inventory.json` |
 | `previous-inventory-path` | No | — | Previous snapshot for drift detection |
+| `anthropic-api-key` | No† | — | Anthropic API key (takes priority if set) |
+| `anthropic-model` | No | `claude-sonnet-4-5` | Anthropic model name |
 | `openai-api-key` | No† | — | OpenAI API key |
 | `azure-openai-endpoint` | No† | — | Azure OpenAI endpoint |
 | `azure-openai-key` | No† | — | Azure OpenAI key |
@@ -147,7 +149,7 @@ python -m briefing.brief \
 | `github-token` | Yes | `${{ github.token }}` | Token for posting workflow summary |
 
 \* At least one `inventory-path*` must be provided.
-† One of `openai-api-key` or the `azure-openai-*` pair must be provided.
+† One of `anthropic-api-key`, `openai-api-key`, or the `azure-openai-*` pair must be provided. Anthropic is used by default if `anthropic-api-key` is set.
 
 ---
 
