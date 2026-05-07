@@ -171,6 +171,7 @@ multicloud-sa-toolkit UC02 discovery runs.
 - **[tf-plan-ai-reviewer](https://github.com/JamesIOmete/tf-plan-ai-reviewer)** — AI-powered Terraform plan reviewer; complements this tool by catching risks before they reach the estate.
 - **[iot-ops-agent](https://github.com/JamesIOmete/iot-ops-agent)** — autonomous AI agent for IoT fleet operations; a more advanced agentic pattern that extends the single-pass LLM approach used here into a full tool-use loop with runbooks, structured reasoning logs, and escalation design.
 - **[aws-iot-edge-reference](https://github.com/JamesIOmete/aws-iot-edge-reference)** — end-to-end AWS IoT reference stack; the IoT counterpart to this toolkit's cloud infrastructure patterns.
+- **[tf-scaffold-ai](https://github.com/JamesIOmete/tf-scaffold-ai)** — generates working Terraform scaffolds from plain-language architecture descriptions; the upstream generative counterpart to this briefing tool — scaffold first, monitor later.
 
 ---
 
