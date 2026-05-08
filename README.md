@@ -38,7 +38,7 @@ The toolkit discovers and documents what's running. This project interprets it a
 - **Anomaly callouts** — unexpected resource counts, untagged resources, default-VPC usage
 - **Security observations** — public IPs without purpose, open firewall rules, default service accounts
 - **Drift detection** (optional) — what changed between two inventory snapshots, using `uc02_diff.py`
-- **Recommended next actions** — prioritised, actionable, scoped to what was found
+- **Recommended next actions** — prioritized, actionable, scoped to what was found
 
 ---
 
