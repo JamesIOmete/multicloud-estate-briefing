@@ -6,19 +6,26 @@ A GitHub Actions workflow + Python tool that ingests UC02 inventory artifacts fr
 
 ## How it fits the portfolio
 
-```
-multicloud-sa-toolkit (UC02)          multicloud-estate-briefing
-─────────────────────────────         ──────────────────────────────────
-discover.sh                           parser.py
-  → inventory.json          ──────►     normalise across clouds
-  → SUMMARY.md                          │
-  → SCORECARD.md                        ▼
-                                      prompt.py  →  llm.py
-                                        │
-                                        ▼
-                                      formatter.py
-                                        → BRIEFING.md (artifact)
-                                        → posted as workflow summary
+```mermaid
+flowchart LR
+    subgraph TOOLKIT["multicloud-sa-toolkit (UC02)"]
+        DISCOVER["discover.sh"]
+        INV["inventory.json"]
+        SUMM["SUMMARY.md"]
+        SCORE["SCORECARD.md"]
+        DISCOVER --> INV & SUMM & SCORE
+    end
+
+    subgraph BRIEF_TOOL["multicloud-estate-briefing"]
+        PARSER["parser.py\nnormalise across clouds"]
+        PROMPT["prompt.py"]
+        LLM["llm.py"]
+        FORMATTER["formatter.py"]
+        BRIEF["BRIEFING.md\nartifact + workflow summary"]
+        PARSER --> PROMPT --> LLM --> FORMATTER --> BRIEF
+    end
+
+    INV --> PARSER
 ```
 
 The toolkit discovers and documents what's running. This project interprets it and tells you what matters.
